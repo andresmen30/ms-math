@@ -1,0 +1,36 @@
+services:
+  ms_math_db:
+    image: postgres:15
+    container_name: ms_math_db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: math
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: math
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    restart: always
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U math -d math"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  ms_math:
+    build:
+      context: .
+    image: ms-math
+    ports:
+      - "8080:8080"
+    environment:
+      DB_URL: jdbc:postgresql://ms_math_db:5432/math
+      DB_USER_NAME: math
+      DB_PASSWORD: 1234
+    restart: always
+    depends_on:
+      ms_math_db:
+        condition: service_healthy
+
+volumes:
+  db_data:
