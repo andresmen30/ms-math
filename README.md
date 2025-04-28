@@ -4,7 +4,6 @@ Project challenge
 
 ## Comenzando 🏁
 
-_Proyecto CRUD de candidatos_
 
 ### Prerrequisitos 📋
 
