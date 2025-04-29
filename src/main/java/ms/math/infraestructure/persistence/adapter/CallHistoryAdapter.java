@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 import lombok.RequiredArgsConstructor;
@@ -22,7 +21,6 @@ public class CallHistoryAdapter implements CallHistoryPort {
 
    private final CallHistoryMapper callHistoryMapper;
 
-   @Async
    public void logCall(final CallHistoryModel callHistoryModel) {
       final CallHistory callHistory = callHistoryMapper.toEntity(callHistoryModel);
       callHistoryRepository.save(callHistory);

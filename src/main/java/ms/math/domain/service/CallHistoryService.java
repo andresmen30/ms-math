@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
@@ -21,6 +22,7 @@ public class CallHistoryService implements CallHistoryUseCase {
 
    private final CallHistoryPort callHistoryPort;
 
+   @Async
    public void logCall(final CallHistoryModel callHistoryModel) {
       callHistoryPort.logCall(callHistoryModel);
    }

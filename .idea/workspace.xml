@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5c78616d-64f0-412c-915a-eae75f6117b3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/img.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/img_1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/img_2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ms/math/domain/service/CallHistoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ms/math/domain/service/CallHistoryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ms/math/infraestructure/persistence/adapter/CallHistoryAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ms/math/infraestructure/persistence/adapter/CallHistoryAdapter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,6 +29,9 @@
     "accountId": "7c7f5ff5-336b-4ee3-bb93-33fea0e248d4"
   }
 }]]></component>
+  <component name="JpbToolWindowState">
+    <option name="isToolWindowVisible" value="false" />
+  </component>
   <component name="ProjectColorInfo"><![CDATA[{
   "associatedIndex": 3
 }]]></component>
@@ -70,7 +72,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1745877384364</updated>
-      <workItem from="1745877385419" duration="825000" />
+      <workItem from="1745877385419" duration="5893000" />
     </task>
     <servers />
   </component>
