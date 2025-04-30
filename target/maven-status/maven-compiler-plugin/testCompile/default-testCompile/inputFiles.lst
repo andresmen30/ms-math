@@ -1,0 +1,8 @@
+/Users/andresmendez/github-personal/public/ms-math/src/test/java/ms/math/application/controller/CallHistoryControllerTest.java
+/Users/andresmendez/github-personal/public/ms-math/src/test/java/ms/math/application/controller/PercentageControllerTest.java
+/Users/andresmendez/github-personal/public/ms-math/src/test/java/ms/math/domain/service/CachedPercentageServiceTest.java
+/Users/andresmendez/github-personal/public/ms-math/src/test/java/ms/math/domain/service/PercentageServiceTest.java
+/Users/andresmendez/github-personal/public/ms-math/src/test/java/ms/math/infrastructure/util/JsonUtilTest.java
+/Users/andresmendez/github-personal/public/ms-math/src/test/java/ms/math/mock/ApiResponseMock.java
+/Users/andresmendez/github-personal/public/ms-math/src/test/java/ms/math/mock/CallHistoryMock.java
+/Users/andresmendez/github-personal/public/ms-math/src/test/java/ms/math/mock/PercentageMock.java

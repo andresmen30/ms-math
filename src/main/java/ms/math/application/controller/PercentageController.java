@@ -16,7 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 import ms.math.application.request.PercentageRequest;
 import ms.math.application.response.ApiResponse;
 import ms.math.domain.port.in.PercentageUseCase;
-import ms.math.infraestructure.util.ResourcePathUtil;
+import ms.math.infrastructure.util.ResourcePathUtil;
 
 @Slf4j
 @Tag(name = "Math", description = "Operaciones matemáticas con porcentaje dinámico")

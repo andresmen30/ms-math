@@ -13,7 +13,7 @@ import ms.math.application.response.ApiResponse;
 import ms.math.domain.model.CallHistoryModel;
 import ms.math.domain.port.in.CallHistoryUseCase;
 import ms.math.domain.port.out.CallHistoryPort;
-import ms.math.infraestructure.util.ResponseUtil;
+import ms.math.infrastructure.util.ResponseUtil;
 
 
 @Service

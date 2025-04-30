@@ -26,7 +26,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import lombok.extern.slf4j.Slf4j;
 import ms.math.application.response.ApiResponse;
 import ms.math.domain.port.in.CallHistoryUseCase;
-import ms.math.infraestructure.util.ResourcePathUtil;
+import ms.math.infrastructure.util.ResourcePathUtil;
 import ms.math.mock.ApiResponseMock;
 
 @Slf4j

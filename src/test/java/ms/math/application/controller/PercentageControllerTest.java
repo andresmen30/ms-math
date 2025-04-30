@@ -27,8 +27,8 @@ import ms.math.application.response.ApiResponse;
 import ms.math.domain.port.in.PercentageUseCase;
 import ms.math.domain.port.out.CallHistoryPort;
 import ms.math.domain.service.CallHistoryService;
-import ms.math.infraestructure.util.JsonUtil;
-import ms.math.infraestructure.util.ResourcePathUtil;
+import ms.math.infrastructure.util.JsonUtil;
+import ms.math.infrastructure.util.ResourcePathUtil;
 import ms.math.mock.ApiResponseMock;
 import ms.math.mock.PercentageMock;
 
