@@ -32,4 +32,38 @@ class JsonUtilTest {
       assertEquals("{\"num1\":10.5,\"num2\":20.3}", jsonString);
    }
 
+   @Test
+   void minifyJson_NullString() {
+      final String result = JsonUtil.minifyJson(null);
+      assertEquals(StringUtils.EMPTY, result, "Minifying a null string should return an empty string.");
+   }
+
+   @Test
+   void minifyJson_BlankString() {
+      final String result = JsonUtil.minifyJson("   ");
+      assertEquals(StringUtils.EMPTY, result, "Minifying a blank string should return an empty string.");
+   }
+
+   @Test
+   void minifyJson_InvalidJson() {
+      final String invalidJson = "{invalid: json}";
+      final String result = JsonUtil.minifyJson(invalidJson);
+      assertEquals(StringUtils.EMPTY, result, "Minifying an invalid JSON string should return an empty string.");
+   }
+
+   @Test
+   void minifyJson_ValidJson() {
+      final String validJson = "{\n  \"key1\": \"value1\",\n  \"key2\": \"value2\"\n}";
+      final String expectedMinifiedJson = "{\"key1\":\"value1\",\"key2\":\"value2\"}";
+      final String result = JsonUtil.minifyJson(validJson);
+      assertEquals(expectedMinifiedJson, result, "Minifying a valid JSON string should return a minified JSON string.");
+   }
+
+   @Test
+   void minifyJson_EmptyJsonObject() {
+      final String emptyJson = "{}";
+      final String result = JsonUtil.minifyJson(emptyJson);
+      assertEquals("{}", result, "Minifying an empty JSON object should return the same JSON object.");
+   }
+
 }
