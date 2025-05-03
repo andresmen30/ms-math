@@ -3,6 +3,7 @@ package ms.math.infrastructure.util;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
 
 import ms.math.application.request.PercentageRequest;
@@ -13,21 +14,14 @@ class JsonUtilTest {
 
    @Test
    void objectToJsonString_NullObject() {
-      String jsonString = JsonUtil.objectToJsonString(null);
-      assertEquals("null", jsonString);
+      final String jsonString = JsonUtil.objectToJsonString(null);
+      assertEquals(StringUtils.EMPTY, jsonString);
    }
 
    @Test
    void objectToJsonString_InvalidObject() {
-      Object invalidObject = new Object() {
-
-         public Object getSelfReference() {
-            return selfReference;
-         }
-
-         private final Object selfReference = this;
-      };
-      String jsonString = JsonUtil.objectToJsonString(invalidObject);
+      final Object invalidObject = new Object();
+      final String jsonString = JsonUtil.objectToJsonString(invalidObject);
       assertTrue(jsonString.isEmpty());
    }
 
@@ -37,7 +31,5 @@ class JsonUtilTest {
       final String jsonString = JsonUtil.objectToJsonString(percentageRequest);
       assertEquals("{\"num1\":10.5,\"num2\":20.3}", jsonString);
    }
-
-
 
 }

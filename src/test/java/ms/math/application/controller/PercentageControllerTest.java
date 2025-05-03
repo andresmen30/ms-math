@@ -14,46 +14,46 @@ import java.math.BigDecimal;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import lombok.extern.slf4j.Slf4j;
 import ms.math.application.response.ApiResponse;
 import ms.math.domain.port.in.PercentageUseCase;
-import ms.math.domain.port.out.CallHistoryPort;
-import ms.math.domain.service.CallHistoryService;
-import ms.math.infrastructure.util.json.JsonUtil;
+import ms.math.infrastructure.exception.ExceptionHelper;
 import ms.math.infrastructure.util.ResourcePathUtil;
+import ms.math.infrastructure.util.json.JsonUtil;
 import ms.math.mock.ApiResponseMock;
 import ms.math.mock.PercentageMock;
 
 @Slf4j
-@WebMvcTest(PercentageController.class)
-@AutoConfigureMockMvc
+@ExtendWith(MockitoExtension.class)
 class PercentageControllerTest {
 
-   @Autowired
    private MockMvc mockMvc;
 
-   @MockitoBean
+   @InjectMocks
+   private PercentageController percentageController;
+
+   @InjectMocks
+   private ExceptionHelper exceptionHelper;
+
+   @Mock
    private PercentageUseCase percentageUseCase;
-
-   @MockitoBean
-   private CallHistoryService callHistoryService;
-
-   @MockitoBean
-   private CallHistoryPort callHistoryPort;
 
    private ApiResponse apiResponseMock;
 
    @BeforeEach
    void setup() {
       apiResponseMock = ApiResponseMock.createPercentageSuccessMock();
+      mockMvc = MockMvcBuilders.standaloneSetup(percentageController, exceptionHelper).build();
+
    }
 
    @Test

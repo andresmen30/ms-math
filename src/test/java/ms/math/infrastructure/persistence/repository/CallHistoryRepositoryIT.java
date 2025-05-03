@@ -56,9 +56,9 @@ class CallHistoryRepositoryIT {
 
    @Test
    void testFindByTimestampBetween() {
-      LocalDateTime start = LocalDateTime.now().minusDays(2);
-      LocalDateTime end = LocalDateTime.now();
-      var result = repository.findByTimestampBetween(start, end, Pageable.ofSize(10));
+      final LocalDateTime start = LocalDateTime.now().minusDays(2);
+      final LocalDateTime end = LocalDateTime.now();
+      final var result = repository.findByTimestampBetween(Pageable.ofSize(10), start, end);
       assertThat(result).hasSize(1);
    }
 }

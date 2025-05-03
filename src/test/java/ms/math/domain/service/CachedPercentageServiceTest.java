@@ -10,16 +10,17 @@ import static org.mockito.Mockito.when;
 import java.math.BigDecimal;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
 
 import ms.math.domain.exception.PercentageServiceUnavailableException;
 import ms.math.domain.port.out.PercentagePort;
 
-@SpringBootTest
+@ExtendWith(MockitoExtension.class)
 class CachedPercentageServiceTest {
 
    @Mock

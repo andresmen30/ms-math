@@ -1,5 +1,6 @@
 package ms.math.application.controller;
 
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.Matchers.hasSize;
@@ -15,29 +16,35 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import lombok.extern.slf4j.Slf4j;
 import ms.math.application.response.ApiResponse;
 import ms.math.domain.port.in.CallHistoryUseCase;
+import ms.math.infrastructure.exception.ExceptionHelper;
 import ms.math.infrastructure.util.ResourcePathUtil;
 import ms.math.mock.ApiResponseMock;
 
 @Slf4j
-@WebMvcTest(CallHistoryController.class)
-@AutoConfigureMockMvc
+@ExtendWith(MockitoExtension.class)
 class CallHistoryControllerTest {
 
-   @Autowired
    private MockMvc mockMvc;
 
-   @MockitoBean
+   @InjectMocks
+   private CallHistoryController callHistoryController;
+
+   @InjectMocks
+   private ExceptionHelper exceptionHelper;
+
+   @Mock
    private CallHistoryUseCase callHistoryUseCase;
 
    private ApiResponse apiResponseMockSuccess;
@@ -48,6 +55,7 @@ class CallHistoryControllerTest {
    void setup() {
       apiResponseMockSuccess = ApiResponseMock.createCallHistorySuccessMock();
       apiResponseMockEmpty = ApiResponseMock.createCallHistoryEmptyMock();
+      mockMvc = MockMvcBuilders.standaloneSetup(callHistoryController, exceptionHelper).build();
    }
 
    @Test
@@ -92,5 +100,35 @@ class CallHistoryControllerTest {
             .andExpect(jsonPath("$.data.content").isArray())
             .andExpect(jsonPath("$.data.content").value(hasSize(NumberUtils.INTEGER_ZERO)));
       log.info("(getHistoryEmpty) [[end]]");
+   }
+
+   @Test
+   void getHistoryBadRequestPageAndSize() throws Exception {
+      log.info("(getHistoryBadRequestPageAndSize)");
+      mockMvc
+            .perform(get(StringUtils.join(ResourcePathUtil.BASE_PATH_API, ResourcePathUtil.HISTORY_ENDPOINT))
+                  .contentType(MediaType.APPLICATION_JSON)
+                  .queryParam("page", "abc")
+                  .queryParam("size", "def"))
+            .andExpect(status().isBadRequest())
+            .andExpect(jsonPath("$.message", is(HttpStatus.BAD_REQUEST.name())))
+            .andExpect(jsonPath("$.time", notNullValue()))
+            .andExpect(jsonPath("$.data", containsString("Failed")));
+      log.info("(getHistoryBadRequestPageAndSize) [[end]]");
+   }
+
+   @Test
+   void getHistoryBadRequestFromAndTo() throws Exception {
+      log.info("(getHistoryBadRequestFromAndTo)");
+      mockMvc
+            .perform(get(StringUtils.join(ResourcePathUtil.BASE_PATH_API, ResourcePathUtil.HISTORY_ENDPOINT))
+                  .contentType(MediaType.APPLICATION_JSON)
+                  .queryParam("from", "abc")
+                  .queryParam("to", "def"))
+            .andExpect(status().isBadRequest())
+            .andExpect(jsonPath("$.message", is(HttpStatus.BAD_REQUEST.name())))
+            .andExpect(jsonPath("$.time", notNullValue()))
+            .andExpect(jsonPath("$.data", containsString("Failed")));
+      log.info("(getHistoryBadRequestFromAndTo) [[end]]");
    }
 }
