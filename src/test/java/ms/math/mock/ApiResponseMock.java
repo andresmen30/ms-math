@@ -3,7 +3,7 @@ package ms.math.mock;
 import org.springframework.http.HttpStatus;
 
 import ms.math.application.response.ApiResponse;
-import ms.math.infrastructure.util.ResponseUtil;
+import ms.math.application.util.ResponseUtil;
 
 public class ApiResponseMock {
 

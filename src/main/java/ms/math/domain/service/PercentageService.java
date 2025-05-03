@@ -12,7 +12,7 @@ import ms.math.application.response.ApiResponse;
 import ms.math.application.response.PercentageResponse;
 import ms.math.domain.exception.PercentageServiceUnavailableException;
 import ms.math.domain.port.in.PercentageUseCase;
-import ms.math.infrastructure.util.ResponseUtil;
+import ms.math.application.util.ResponseUtil;
 
 @Slf4j
 @Service

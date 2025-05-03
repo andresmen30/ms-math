@@ -1,4 +1,4 @@
-package ms.math.infrastructure.util;
+package ms.math.application.util;
 
 import java.time.LocalDateTime;
 

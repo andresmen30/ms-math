@@ -18,7 +18,7 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
 import jakarta.validation.ConstraintViolationException;
 import ms.math.application.response.ApiResponse;
 import ms.math.domain.exception.PercentageServiceUnavailableException;
-import ms.math.infrastructure.util.ResponseUtil;
+import ms.math.application.util.ResponseUtil;
 
 @RestControllerAdvice
 public class ExceptionHelper {

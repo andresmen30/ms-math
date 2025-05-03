@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import ms.math.application.request.PercentageRequest;
+import ms.math.infrastructure.util.json.JsonUtil;
 import ms.math.mock.PercentageMock;
 
 class JsonUtilTest {

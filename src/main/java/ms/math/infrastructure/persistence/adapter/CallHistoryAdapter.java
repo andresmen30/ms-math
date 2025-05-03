@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 import lombok.RequiredArgsConstructor;
 import ms.math.domain.model.CallHistoryModel;
 import ms.math.domain.port.out.CallHistoryPort;
-import ms.math.infrastructure.persistence.entity.CallHistory;
 import ms.math.infrastructure.persistence.mapper.CallHistoryMapper;
 import ms.math.infrastructure.persistence.repository.CallHistoryRepository;
 
@@ -21,18 +20,19 @@ public class CallHistoryAdapter implements CallHistoryPort {
 
    private final CallHistoryMapper callHistoryMapper;
 
+   @Override
    public void logCall(final CallHistoryModel callHistoryModel) {
-      final CallHistory callHistory = callHistoryMapper.toEntity(callHistoryModel);
-      callHistoryRepository.save(callHistory);
+      callHistoryRepository.save(callHistoryMapper.toEntity(callHistoryModel));
    }
 
    @Override
-   public Page<CallHistoryModel> findPageable(final Pageable pageable, final LocalDateTime startDate, final LocalDateTime endDate) {
-      if (startDate == null || endDate == null) {
-         return callHistoryRepository.findAll(pageable).map(callHistoryMapper::toModel);
-      } else {
-         return callHistoryRepository.findByTimestampBetween(startDate, endDate, pageable).map(callHistoryMapper::toModel);
-      }
+   public Page<CallHistoryModel> findPageable(final Pageable pageable) {
+      return callHistoryRepository.findAll(pageable).map(callHistoryMapper::toModel);
+   }
+
+   @Override
+   public Page<CallHistoryModel> findByTimestampBetweenPageable(final Pageable pageable, final LocalDateTime startDate, final LocalDateTime endDate) {
+      return callHistoryRepository.findByTimestampBetween(pageable, startDate, endDate).map(callHistoryMapper::toModel);
    }
 
 }

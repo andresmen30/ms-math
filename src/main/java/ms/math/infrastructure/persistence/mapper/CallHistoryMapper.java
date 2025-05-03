@@ -8,7 +8,7 @@ import ms.math.infrastructure.persistence.entity.CallHistory;
 @Mapper(componentModel = "spring")
 public interface CallHistoryMapper {
 
-   CallHistoryModel toModel(final CallHistory entity);
+   CallHistoryModel  toModel(final CallHistory entity);
 
    CallHistory toEntity(final CallHistoryModel model);
 

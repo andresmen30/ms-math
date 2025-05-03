@@ -10,11 +10,10 @@ import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
 import ms.math.application.response.ApiResponse;
+import ms.math.application.util.ResponseUtil;
 import ms.math.domain.model.CallHistoryModel;
 import ms.math.domain.port.in.CallHistoryUseCase;
 import ms.math.domain.port.out.CallHistoryPort;
-import ms.math.infrastructure.util.ResponseUtil;
-
 
 @Service
 @RequiredArgsConstructor
@@ -23,13 +22,17 @@ public class CallHistoryService implements CallHistoryUseCase {
    private final CallHistoryPort callHistoryPort;
 
    @Async
+   @Override
    public void logCall(final CallHistoryModel callHistoryModel) {
       callHistoryPort.logCall(callHistoryModel);
    }
 
    public ApiResponse getCallHistory(final LocalDateTime startDate, final LocalDateTime endDate, final int page, final int size) {
       final Pageable pageable = PageRequest.of(page, size);
-      return ResponseUtil.response(HttpStatus.OK, callHistoryPort.findPageable(pageable, startDate, endDate));
-
+      if (startDate == null && endDate == null) {
+         return ResponseUtil.response(HttpStatus.OK, callHistoryPort.findPageable(pageable));
+      } else {
+         return ResponseUtil.response(HttpStatus.OK, callHistoryPort.findByTimestampBetweenPageable(pageable, startDate, endDate));
+      }
    }
 }

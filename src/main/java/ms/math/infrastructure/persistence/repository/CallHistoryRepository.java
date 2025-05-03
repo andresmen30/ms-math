@@ -10,6 +10,6 @@ import ms.math.infrastructure.persistence.entity.CallHistory;
 
 public interface CallHistoryRepository extends JpaRepository<CallHistory, Long> {
 
-   Page<CallHistory> findByTimestampBetween(final LocalDateTime startDate, final LocalDateTime endDate, final Pageable pageable);
+   Page<CallHistory> findByTimestampBetween(final Pageable pageable, final LocalDateTime startDate, final LocalDateTime endDate);
 
 }
