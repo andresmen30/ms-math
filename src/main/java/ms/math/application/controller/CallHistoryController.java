@@ -17,7 +17,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import ms.math.application.response.ApiResponse;
 import ms.math.domain.port.in.CallHistoryUseCase;
-import ms.math.infraestructure.util.ResourcePathUtil;
+import ms.math.infrastructure.util.ResourcePathUtil;
 
 @Slf4j
 @Tag(name = "History", description = "Historial de llamadas a la API")

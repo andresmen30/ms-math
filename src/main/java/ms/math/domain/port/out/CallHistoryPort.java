@@ -11,6 +11,8 @@ public interface CallHistoryPort {
 
    void logCall(final CallHistoryModel callHistoryModel);
 
-   Page<CallHistoryModel> findPageable(final Pageable pageable, final LocalDateTime startDate, final LocalDateTime endDate);
+   Page<CallHistoryModel> findPageable(final Pageable pageable);
+
+   Page<CallHistoryModel> findByTimestampBetweenPageable(final Pageable pageable, final LocalDateTime startDate, final LocalDateTime endDate);
 
 }

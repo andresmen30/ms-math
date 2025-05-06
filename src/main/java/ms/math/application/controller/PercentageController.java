@@ -1,12 +1,10 @@
 package ms.math.application.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Schema;
 
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,7 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 import ms.math.application.request.PercentageRequest;
 import ms.math.application.response.ApiResponse;
 import ms.math.domain.port.in.PercentageUseCase;
-import ms.math.infraestructure.util.ResourcePathUtil;
+import ms.math.infrastructure.util.ResourcePathUtil;
 
 @Slf4j
 @Tag(name = "Math", description = "Operaciones matemáticas con porcentaje dinámico")
@@ -27,17 +25,12 @@ public class PercentageController {
 
    private final PercentageUseCase percentageUseCase;
 
-   @Operation(
-         summary = "Calcular suma con porcentaje dinámico",
-         description = "Recibe dos números (`num1`, `num2`), los suma y aplica un porcentaje adicional obtenido de un servicio externo.",
-         requestBody = @RequestBody(
-               description = "Objeto que contiene los dos números a sumar.",
-               required = true,
-               content = @Content(schema = @Schema(implementation = PercentageRequest.class))
-         )
+   @Operation(summary = "Calcular suma con porcentaje dinámico", description = "Recibe dos números (`num1`, `num2`), los suma y aplica un "
+         + "porcentaje adicional obtenido de un servicio externo."
+
    )
    @PostMapping(value = ResourcePathUtil.CALCULATE_ENDPOINT)
-   public ApiResponse calculate(@org.springframework.web.bind.annotation.RequestBody @Valid final PercentageRequest percentageRequest) {
+   public ApiResponse calculate(@RequestBody @Valid final PercentageRequest percentageRequest) {
       log.info("calculate: {}", percentageRequest);
       return percentageUseCase.calculatePercentage(percentageRequest.num1(), percentageRequest.num2());
    }

@@ -10,7 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
 import ms.math.domain.model.CallHistoryModel;
-import ms.math.infraestructure.util.ResourcePathUtil;
+import ms.math.infrastructure.util.ResourcePathUtil;
 
 public class CallHistoryMock {
 

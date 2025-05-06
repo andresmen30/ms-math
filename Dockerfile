@@ -6,7 +6,7 @@ WORKDIR /app
 COPY pom.xml .
 COPY src ./src
 
-RUN mvn clean install -DskipTests
+RUN mvn clean install
 
 FROM amazoncorretto:21
 

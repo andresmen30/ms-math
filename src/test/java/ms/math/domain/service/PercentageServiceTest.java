@@ -7,18 +7,19 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
 
 import ms.math.application.response.ApiResponse;
 import ms.math.application.response.PercentageResponse;
 import ms.math.domain.exception.PercentageServiceUnavailableException;
 
-@SpringBootTest
+@ExtendWith(MockitoExtension.class)
 class PercentageServiceTest {
 
    @Mock

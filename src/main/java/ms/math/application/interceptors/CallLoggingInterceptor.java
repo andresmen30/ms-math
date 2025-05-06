@@ -3,7 +3,6 @@ package ms.math.application.interceptors;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
@@ -16,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 import ms.math.application.response.interceptor.CachedBodyHttpServletResponse;
 import ms.math.domain.model.CallHistoryModel;
 import ms.math.domain.port.in.CallHistoryUseCase;
+import ms.math.infrastructure.util.json.JsonUtil;
 
 @Component
 @RequiredArgsConstructor
@@ -41,12 +41,12 @@ public class CallLoggingInterceptor implements HandlerInterceptor {
    private String getRequestBody(final HttpServletRequest httpServletRequest) {
       final ContentCachingRequestWrapper cachedRequest = (ContentCachingRequestWrapper) httpServletRequest;
       final byte[] content = cachedRequest.getContentAsByteArray();
-      return content.length > NumberUtils.INTEGER_ZERO ? StringUtils.trim(new String(content, StandardCharsets.UTF_8)) : null;
+      return content.length > NumberUtils.INTEGER_ZERO ? JsonUtil.minifyJson(new String(content, StandardCharsets.UTF_8)) : null;
    }
 
    private String getResponseBody(final HttpServletResponse httpServletResponse) {
       final CachedBodyHttpServletResponse cachedResponse = (CachedBodyHttpServletResponse) httpServletResponse;
-      return StringUtils.trim(new String(cachedResponse.getCachedContent(), StandardCharsets.UTF_8));
+      return JsonUtil.minifyJson(new String(cachedResponse.getCachedContent(), StandardCharsets.UTF_8));
    }
 
 }
