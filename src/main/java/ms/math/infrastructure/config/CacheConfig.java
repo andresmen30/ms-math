@@ -16,9 +16,9 @@ import com.github.benmanes.caffeine.cache.Caffeine;
 public class CacheConfig {
 
    @Bean
-   public Caffeine<Object, Object> caffeineConfig(@Value("${cache.expiration.minutes}") final int expirationMinutes,
-         @Value("${cache.maximum.size}") final int maximumSize) {
-      return Caffeine.newBuilder().expireAfterWrite(expirationMinutes, TimeUnit.MINUTES).maximumSize(maximumSize).recordStats();
+   public Caffeine<Object, Object> caffeineConfig(@Value("${cache.expiration.time}") final int expirationMinutes,
+         @Value("${cache.maximum.size}") final int maximumSize, @Value("${cache.expiration.time.unit}") final String timeUnit) {
+      return Caffeine.newBuilder().expireAfterWrite(expirationMinutes, TimeUnit.valueOf(timeUnit)).maximumSize(maximumSize).recordStats();
    }
 
    @Bean
